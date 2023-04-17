@@ -170,7 +170,7 @@ class Trainer:
         self.scheduler_D = self._get_scheduler(self.optimizer_D)
 
 
-def main(config_path='config/config.yaml'):
+def main(config_path='/content/DeblurGANv2/config/config.yaml'):
     with open(config_path, 'r',encoding='utf-8') as f:
         config = yaml.load(f, Loader=yaml.SafeLoader)
 
