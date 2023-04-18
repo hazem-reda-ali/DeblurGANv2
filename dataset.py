@@ -129,7 +129,7 @@ class PairedDataset(Dataset):
                          bounds=config.get('bounds', (0, 1)),
                          hash_fn=hash_fn,
                          verbose=verbose)
-
+        print("Number of tuples in data:", len(data)) # added code to check data list
         files_a, files_b = map(list, zip(*data))
 
         return PairedDataset(files_a=files_a,
