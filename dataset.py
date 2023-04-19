@@ -130,9 +130,9 @@ class PairedDataset(Dataset):
                          hash_fn=hash_fn,
                          verbose=verbose)
         
-        files_a = sorted(glob(os.path.join(data_dir, '*')))#Testing 
-        files_b = sorted(glob(os.path.join(gt_dir, '*')))#Testing
-        
+        files_a = sorted(glob(os.path.join('/content/DeblurGANv2/dataset/blurred', '*')))#Testing 
+        files_b = sorted(glob(os.path.join('/content/DeblurGANv2/dataset/sharp', '*')))#Testing
+
         print(f"Number of files in blurred directory: {len(files_a)}")#added code files a
         print(f"Number of files in sharp directory: {len(files_b)}")#added code files b
         print("Number of tuples in data:", len(data)) # added code to check data list
