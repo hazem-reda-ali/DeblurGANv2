@@ -61,9 +61,6 @@ class PairedDataset(Dataset):
 
         assert len(files_a) == len(files_b)
 
-        files_a = sorted(glob(os.path.join(data_dir, '*')))#Testing 
-        files_b = sorted(glob(os.path.join(gt_dir, '*')))#Testing
-
         self.preload = preload
         self.data_a = files_a
         self.data_b = files_b
@@ -132,6 +129,9 @@ class PairedDataset(Dataset):
                          bounds=config.get('bounds', (0, 1)),
                          hash_fn=hash_fn,
                          verbose=verbose)
+        
+        files_a = sorted(glob(os.path.join(data_dir, '*')))#Testing 
+        files_b = sorted(glob(os.path.join(gt_dir, '*')))#Testing
         
         print(f"Number of files in blurred directory: {len(files_a)}")#added code files a
         print(f"Number of files in sharp directory: {len(files_b)}")#added code files b
