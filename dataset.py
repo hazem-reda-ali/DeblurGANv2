@@ -61,6 +61,9 @@ class PairedDataset(Dataset):
 
         assert len(files_a) == len(files_b)
 
+        files_a = sorted(glob(os.path.join(data_dir, '*')))#Testing 
+        files_b = sorted(glob(os.path.join(gt_dir, '*')))#Testing
+
         self.preload = preload
         self.data_a = files_a
         self.data_b = files_b
