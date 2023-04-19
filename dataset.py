@@ -136,7 +136,7 @@ class PairedDataset(Dataset):
         print(f"Number of files in blurred directory: {len(files_a)}")#added code files a
         print(f"Number of files in sharp directory: {len(files_b)}")#added code files b
         print("Number of tuples in data:", len(data)) # added code to check data list
-        files_a, files_b = map(list, zip(*data))
+       # files_a, files_b = map(list, zip(*data))
 
         return PairedDataset(files_a=files_a,
                              files_b=files_b,
