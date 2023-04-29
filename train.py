@@ -75,7 +75,7 @@ class Trainer:
             self.optimizer_G.step()
             self.metric_counter.add_losses(loss_G.item(), loss_content.item(), loss_D)
            # curr_psnr, curr_ssim, img_for_vis = self.model.get_images_and_metrics(inputs, outputs, targets) #line 77 commented
-            self.metric_counter.add_metrics(curr_psnr, curr_ssim)
+           # self.metric_counter.add_metrics(curr_psnr, curr_ssim)
             tq.set_postfix(loss=self.metric_counter.loss_message())
             if not i:
                 self.metric_counter.add_image(img_for_vis, tag='train')
