@@ -10,7 +10,8 @@ import cv2
 import numpy as np
 import tensorflow as tf
 
-from models.networks import FPN
+#from models.networks import FPN
+from models.fpn import FPN#replacing line 13 to test 
 from utils.config import process_config
 from utils.utils import get_args
 from utils.image_utils import load_image, save_image
