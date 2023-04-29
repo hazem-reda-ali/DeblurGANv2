@@ -4,7 +4,6 @@ from torch.nn import init
 import functools
 from torch.autograd import Variable
 import numpy as np
-from .fpn import FPN #FPN import because of error
 from models.fpn_mobilenet import FPNMobileNet
 from models.fpn_inception import FPNInception
 from models.fpn_inception_simple import FPNInceptionSimple
