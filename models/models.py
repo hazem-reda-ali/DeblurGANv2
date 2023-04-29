@@ -25,7 +25,13 @@ class DeblurModel(nn.Module):
         fake = self.tensor2im(output.data)
         real = self.tensor2im(target.data)
         psnr = PSNR(fake, real)
-        ssim = SSIM(fake, real, multichannel=True,win_size=5)#added winsize=5
+        #ssim = SSIM(fake, real, multichannel=True) #line commented to run winsize auto set
+
+        image_size = min(fake.shape[-2:]) # Get the smaller image dimension                                                     #New auto winsize        
+        win_size = min(7, image_size) if image_size > 1 else 1 # Set win_size to 7 or smaller dimension, but at least 1         #New auto winsize  
+        ssim = SSIM(fake, real, win_size=win_size, multichannel=True)                                                           #New auto winsize  
+
+
         vis_img = np.hstack((inp, fake, real))
         return psnr, ssim, vis_img
 
