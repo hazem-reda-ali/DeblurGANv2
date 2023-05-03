@@ -125,11 +125,14 @@ def get_files():
         for filename in filenames:
             if filename.endswith('.png') or filename.endswith('.jpg'):
                 filepath = os.path.join(dirpath, filename)
-                files.append((filepath, os.path.join('./dataset1/sharp', filename)))
-
+                target_filepath = os.path.join('./dataset1/sharp', filename)
+                if not os.path.exists(target_filepath):
+                    print(f"Target file {target_filepath} does not exist!")
+                else:
+                    files.append((filepath, target_filepath))
+    print(f"Found {len(files)} file pairs.")
     return files
 
 if __name__ == '__main__':
     pairs = get_files()
     main(img_pattern='./dataset1/blur/*', mask_pattern='./dataset1/sharp/*', out_dir='./output/', video=True)
-    
