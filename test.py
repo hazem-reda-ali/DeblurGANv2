@@ -32,15 +32,19 @@ def main(args):
     mkdirs(args.output_dir)
 
     # Load generator
-    generator = get_generator('resnet')
-    generator.load_state_dict(torch.load(args.model_path)['model'])
-    generator.eval()
+    try:
+        generator = get_generator(args.generator_type)
+        checkpoint = torch.load(args.model_path, map_location=torch.device('cpu'))
+        generator.load_state_dict(checkpoint['model'])
+        generator.eval()
+    except Exception as e:
+        print(f"Error loading generator: {e}")
+        return
 
     # Load transforms
     transform = transforms.Compose([
         transforms.ToTensor(),
-        transforms.Normalize(mean=[0.5, 0.5, 0.5],
-                             std=[0.5, 0.5, 0.5])
+        transforms.Normalize(mean=[0.5, 0.5, 0.5], std=[0.5, 0.5, 0.5])
     ])
 
     # Get files
@@ -59,7 +63,7 @@ def main(args):
 
         # Save result
         sharp_pil.save(sharp_path)
-
+        
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Deblur images')
     parser.add_argument('--input_dir', type=str, required=True,
