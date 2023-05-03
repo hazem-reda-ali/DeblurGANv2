@@ -119,24 +119,16 @@ def main(img_pattern: str,
     else:
         process_video(pairs, predictor, out_dir)
 
-# def getfiles():
-#     filenames = os.listdir(r'.\dataset1\blur')
-#     print(filenames)
 def get_files():
-    list=[]
-    for filepath,dirnames,filenames in os.walk(r'.\dataset1\blur'):
+    files=[]
+    for dirpath, _, filenames in os.walk(r'./dataset1/blur'):
         for filename in filenames:
-            list.append(os.path.join(filepath,filename))
-    return list
+            if filename.endswith('.png') or filename.endswith('.jpg'):
+                filepath = os.path.join(dirpath, filename)
+                files.append((filepath, os.path.join('./dataset1/sharp', filename)))
 
-
-
-
+    return files
 
 if __name__ == '__main__':
-  #  Fire(main)
-#增加批量处理图片：
-    img_path=get_files()
-    for i in img_path:
-        main(i)
-    # main('test_img/tt.mp4')
+    pairs = get_files()
+    main(img_pattern='./dataset1/blur/*', mask_pattern='./dataset1/sharp/*', out_dir='./output/', video=True)
