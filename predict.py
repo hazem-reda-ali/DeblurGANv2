@@ -132,3 +132,4 @@ def get_files():
 if __name__ == '__main__':
     pairs = get_files()
     main(img_pattern='./dataset1/blur/*', mask_pattern='./dataset1/sharp/*', out_dir='./output/', video=True)
+    
